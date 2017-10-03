@@ -1,0 +1,48 @@
+<!--
+https://jp.vuejs.org/v2/guide/index.html#条件分岐とループ
+https://vuejs.org/v2/guide/index.html#Conditionals-and-Loops
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Introduction - Conditionals and Loops</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app-3">
+  <span v-if="seen">Now you see me</span>
+</div>
+
+
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+
+<script>
+  var app3 = new Vue({
+    el: '#app-3',
+    data: {
+      seen: true
+    }
+  })
+
+
+  var app4 = new Vue({
+    el: '#app-4',
+    data: {
+      todos: [
+        {text: 'Learn JavaScript'},
+        {text: 'Learn Vue'},
+        {text: 'Build something awesome'}
+      ]
+    }
+  })
+</script>
+</body>
+</html>
