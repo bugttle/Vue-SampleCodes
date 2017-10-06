@@ -1,0 +1,102 @@
+<!--
+https://jp.vuejs.org/v2/guide/syntax.html#展開
+https://vuejs.org/v2/guide/syntax.html#Interpolations
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Template Syntax - Interpolations</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Text -->
+<div id="app-1">
+  <span>Message: {{ msg }}</span>
+</div>
+
+<div id="app-2">
+  <span v-once>This will never change: {{ msg }}</span>
+</div>
+
+
+<!-- Raw HTML -->
+<div id="app-3">
+  <div v-html="rawHtml"></div>
+</div>
+
+
+<!-- Attributes -->
+<div id="app-4">
+  <div v-bind:id="dynamicId"></div>
+</div>
+
+<div id="app-5">
+  <button v-bind:disabled="isButtonDisabled">Button</button>
+</div>
+
+
+<!-- Using JavaScript Expressions -->
+<div id="app-6">
+  <div>{{ number + 1 }}</div>
+  <div>{{ ok ? 'YES' : 'NO' }}</div>
+  <div>{{ message.split('').reverse().join('') }}</div>
+  <div v-bind:id="'list-' + id"></div>
+</div>
+
+
+<script>
+  // Text
+  var vm1 = new Vue({
+    el: '#app-1',
+    data: {
+      msg: 'Hello Vue!',
+    }
+  })
+
+  var vm2 = new Vue({
+    el: '#app-2',
+    data: {
+      msg: 'Hello Vue!'
+    }
+  })
+
+
+  // Raw HTML
+  var vm3 = new Vue({
+    el: '#app-3',
+    data: {
+      rawHtml: '<i><b>Hello Vue!</b></i>'
+    }
+  })
+
+
+  // Attributes
+  var vm4 = new Vue({
+    el: '#app-4',
+    data: {
+      dynamicId: 'hello-dynamic-id'
+    }
+  })
+
+  var vm5 = new Vue({
+    el: '#app-5',
+    data: {
+      isButtonDisabled: true
+    }
+  })
+
+  
+  // Using JavaScript Expressions
+  var vm6 = new Vue({
+    el: '#app-6',
+    data: {
+      number: 1,
+      ok: true,
+      message: 'Hello Vue!',
+      id: 'hello-vue-id'
+    }
+  })
+</script>
+</body>
+</html>
