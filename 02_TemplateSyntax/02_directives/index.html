@@ -1,0 +1,61 @@
+<!--
+https://jp.vuejs.org/v2/guide/syntax.html#ディレクティブ
+https://vuejs.org/v2/guide/syntax.html#Directives
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Template Syntax - Directives</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Condition -->
+<div id="app-1">
+  <p v-if="seen">Now you see mee</p>
+</div>
+
+
+<!-- Arguments -->
+<div id="app-2">
+  <a v-bind:href="url">{{ url }}</a>
+</div>
+
+<div id="app-3">
+  <a v-on:click="doSomething"></a>
+</div>
+
+
+<!-- Modifiers -->
+<div id="app-4">
+  <form v-on:submit.prevent="onSubmit"></form>
+</div>
+
+<script>
+  var vm1 = new Vue({
+    el: '#app-1',
+    data: {
+      seen: true
+    }
+  })
+
+
+  var vm2 = new Vue({
+    el: '#app-2',
+    data: {
+      url: 'http://vuejs.org'
+    }
+  })
+
+
+  var vm3 = new Vue({
+    el: '#app-3',
+    methods: {
+      doSomething: function () {
+        alert('doSomething')
+      }
+    }
+  })
+</script>
+</body>
+</html>
