@@ -1,0 +1,50 @@
+<!--
+https://jp.vuejs.org/v2/guide/syntax.html#省略記法
+https://vuejs.org/v2/guide/syntax.html#Shorthands
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Template Syntax - Shorthands</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- v-bind Shorthand -->
+<div id="app-1">
+  <!-- full syntax -->
+  <a v-bind:href="url">{{ url }}</a>
+  <!-- shorthand -->
+  <a :href="url">{{ url }}</a>
+</div>
+
+
+<!-- v-on Shorthand -->
+<div id="app-2">
+  <!-- full syntax -->
+  <a v-on:click="doSomething">doSomething</a>
+  <!-- shorthand -->
+  <a @click="doSomething">doSomething</a>
+</div>
+
+
+<script>
+  var vm1 = new Vue({
+    el: '#app-1',
+    data: {
+      url: 'http://vuejs.org'
+    }
+  })
+
+
+  var vm2 = new Vue({
+    el: '#app-2',
+    methods: {
+      doSomething: function () {
+        alert('doSomething')
+      }
+    }
+  })
+</script>
+</body>
+</html>
