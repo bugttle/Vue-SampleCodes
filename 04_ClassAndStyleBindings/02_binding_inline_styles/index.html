@@ -1,0 +1,77 @@
+<!--
+https://jp.vuejs.org/v2/guide/class-and-style.html#インラインスタイルのバインディング
+https://vuejs.org/v2/guide/class-and-style.html#Binding-Inline-Styles
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Class and Style Bindings - Binding Inline Styles</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Object Syntax -->
+<div id="example-1">
+  <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+  <div v-bind:style="styleObject"></div>
+</div>
+
+
+<!-- Array Syntax -->
+<div id="example-2">
+  <div v-bind:style="[baseStyles, overridingStyles]"></div>
+</div>
+
+
+<!-- Auto-prefixing -->
+<div id="example-3">
+  <div v-bind:style="{ transform: transform }"></div>
+</div>
+
+
+<!-- Multiple Values -->
+<div id="example-4">
+  <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+</div>
+
+<script>
+  // Object Syntax
+  var vm1 = new Vue({
+    el: '#example-1',
+    data: {
+      activeColor: 'red',
+      fontSize: 30,
+      styleObject: {
+        color: 'red',
+        fontSize: '30px'
+      }
+    }
+  })
+
+
+  // Array Syntax
+  var vm2 = new Vue({
+    el: '#example-2',
+    data: {
+      baseStyles: {color: 'red', fontSize: 30},
+      overridingStyles: {color: 'blue'}
+    }
+  })
+
+
+  // Auto-prefixing
+  var vm3 = new Vue({
+    el: '#example-3',
+    data: {
+      transform: 'scale(0.5)'
+    }
+  })
+
+  
+  // Multiple Values
+  var vm4 = new Vue({
+    el: '#example-4',
+  })
+</script>
+</body>
+</html>
