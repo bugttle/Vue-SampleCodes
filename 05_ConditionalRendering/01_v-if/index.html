@@ -1,0 +1,131 @@
+<!--
+https://jp.vuejs.org/v2/guide/conditional.html#v-if
+https://vuejs.org/v2/guide/conditional.html#v-if
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Conditional Rendering - v-if</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- v-if -->
+<div id="example-1">
+  <h1 v-if="ok">Yes</h1>
+  <h1 v-else>No</h1>
+</div>
+
+
+<!-- Conditional Groups with v-if on <template> -->
+<div id="example-2">
+  <template v-if="ok">
+    <h1>Title</h1>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+  </template>
+</div>
+
+
+<!-- v-else -->
+<div id="example-3">
+  <div v-if="Math.random() > 0.5">
+    Now you see me
+  </div>
+  <div v-else>
+    Now you don't
+  </div>
+</div>
+
+
+<!-- v-else-if -->
+<div id="example-4">
+  <div v-if="type === 'A'">
+    A
+  </div>
+  <div v-else-if="type === 'B'">
+    B
+  </div>
+  <div v-else-if="type === 'C'">
+    C
+  </div>
+  <div v-else>
+    Not A/B/C
+  </div>
+</div>
+
+
+<!-- Controlling Reusable Elements with key -->
+<div id="example-5">
+  <div>
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address">
+    </template>
+
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address" key="email-input">
+    </template>
+  </div>
+  <button @click="toggleLoginType">Toggle login type</button>
+</div>
+
+<script>
+  // v-if
+  var vm1 = new Vue({
+    el: '#example-1',
+    data: {
+      ok: true,
+    }
+  })
+
+
+  // Conditional Groups with on v-if<template>
+  var vm2 = new Vue({
+    el: '#example-2',
+    data: {
+      ok: true,
+    }
+  })
+
+
+  // v-else
+  var vm3 = new Vue({
+    el: '#example-3',
+  })
+
+
+  // v-else-if
+  var types = ['A', 'B', 'C', 'D'];
+  var vm4 = new Vue({
+    el: '#example-4',
+    data: {
+      type: types[Math.floor(Math.random() * types.length)]
+    }
+  })
+
+
+  // Controlling Reusable Elements with key
+  var vm5 = new Vue({
+    el: '#example-5',
+    data: {
+      loginType: 'username'
+    },
+    methods: {
+      toggleLoginType: function () {
+        return this.loginType = this.loginType === 'username' ? 'email' : 'username';
+      }
+    }
+  })
+</script>
+</body>
+</html>
