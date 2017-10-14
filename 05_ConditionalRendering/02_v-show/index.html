@@ -1,0 +1,28 @@
+<!--
+https://jp.vuejs.org/v2/guide/conditional.html#v-show
+https://vuejs.org/v2/guide/conditional.html#v-show
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Conditional Rendering - v-show</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- v-show -->
+<div id="example-1">
+  <h1 v-show="ok">Hello!</h1>
+</div>
+
+<script>
+  // v-show
+  var vm1 = new Vue({
+    el: '#example-1',
+    data: {
+      ok: Math.random() < 0.5
+    }
+  })
+</script>
+</body>
+</html>
