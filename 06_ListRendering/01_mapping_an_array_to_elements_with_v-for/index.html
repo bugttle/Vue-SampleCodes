@@ -1,0 +1,54 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#v-for-で配列に要素をマッピングする
+https://vuejs.org/v2/guide/list.html#Mapping-an-Array-to-Elements-with-v-for
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - Mapping an Array to Elements with v-for</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Mapping an Array to Elements with v-for -->
+<ul id="example-1">
+  <li v-for="item in items">
+    {{ item.message }}
+  </li>
+  <li v-for="item of items">
+    {{ item.message }}
+  </li>
+</ul>
+
+<ul id="example-2">
+  <li v-for="{item, index} in items">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+  </li>
+</ul>
+
+<script>
+  // Mapping an Array to Elements with v-for
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      items: [
+        {message: 'Foo'},
+        {message: 'Bar'}
+      ]
+    }
+  })
+
+
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      parentMessage: 'Parent',
+      items: [
+        {message: 'Foo'},
+        {message: 'Bar'}
+      ]
+    }
+  })
+</script>
+</body>
+</html>
