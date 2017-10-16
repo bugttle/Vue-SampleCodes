@@ -1,0 +1,42 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#オブジェクトの-v-for
+https://vuejs.org/v2/guide/list.html#v-for-with-an-Object
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - v-for with an Object</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- v-for with an Object -->
+<ul id="v-for-object" class="demo">
+  <li v-for="value in object">
+    {{ value }}
+  </li>
+
+  <div v-for="(value, key) in object">
+    {{ key }}: {{ value }}
+  </div>
+
+  <div v-for="(value, key, index) in object">
+    {{ index }}. {{ key }}: {{ value }}
+  </div>
+</ul>
+
+<script>
+  // v-for with an Object
+  var vm1 = new Vue({
+    el: '#v-for-object',
+    data: {
+      object: {
+        firstName: 'John',
+        lastName: 'Doe',
+        age: 30
+      }
+    }
+  })
+</script>
+</body>
+</html>
