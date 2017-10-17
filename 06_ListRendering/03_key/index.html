@@ -1,0 +1,32 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#key
+https://vuejs.org/v2/guide/list.html#key
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - key</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- key -->
+<div id="example-1">
+  <div v-for="item in items" :key="item.id">
+    <!-- content -->
+  </div>
+</div>
+
+<script>
+  // key
+  var vm1 = new Vue({
+    el: '#example-1',
+    data: {
+      items: {
+        id: 'A'
+      }
+    }
+  })
+</script>
+</body>
+</html>
