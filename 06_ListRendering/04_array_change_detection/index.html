@@ -1,0 +1,68 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#配列の変化を検出
+https://vuejs.org/v2/guide/list.html#Array-Change-Detection
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - Array Change Detection</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Mutation Methods -->
+<ul id="example-1">
+  <li v-for="item in items">
+    {{ item.message }}
+  </li>
+</ul>
+
+
+<!-- Replacing an Array -->
+<ul id="example-2">
+  <li v-for="item in items">
+    {{ item.message }}
+  </li>
+</ul>
+
+<script>
+  // Mutation Methods
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
+    }
+  })
+  /*
+   example1.items.push({ message: 'Baz' })
+   example1.items.pop()
+   example1.items.shift()
+   example1.items.unshift({ message: 'Foo' })
+   example1.items.splice(1, 1, { message: 'Hoge' })
+   example1.items.sort((a,b) => { return a.message < b.message })
+   example1.items.reverse()
+   */
+
+
+  // Replacing an Array
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' },
+        { message: 'Baz' }
+      ]
+    }
+  })
+  /*
+   example2.items = example2.items.filter(function (item) {
+     return item.message.match(/Foo/)
+   })
+   */
+</script>
+</body>
+</html>
