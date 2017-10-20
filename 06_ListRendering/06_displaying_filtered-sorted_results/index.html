@@ -1,0 +1,43 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#フィルタ-ソートされた結果の表示
+https://vuejs.org/v2/guide/list.html#Displaying-Filtered-Sorted-Results
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - Displaying Filtered/Sorted Results</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Displaying Filtered/Sorted Results -->
+<ul id="example-1">
+  <li v-for="n in evenNumbers">{{ n }}</li>
+  <li v-for="n in even(numbers)">{{ n }}</li>
+</ul>
+
+<script>
+  // Displaying Filtered/Sorted Results
+  var vm = new Vue({
+    el: '#example-1',
+    data: {
+      numbers: [1, 2, 3, 4, 5]
+    },
+    computed: {
+      evenNumbers: function () {
+        return this.numbers.filter(function (number) {
+          return number % 2 === 0
+        })
+      }
+    },
+    methods: {
+      even: function (numbers) {
+        return numbers.filter(function (number) {
+          return number % 2 === 0
+        })
+      }
+    }
+  })
+</script>
+</body>
+</html>
