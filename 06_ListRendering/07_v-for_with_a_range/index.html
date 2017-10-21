@@ -1,0 +1,25 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#範囲付き-v-for
+https://vuejs.org/v2/guide/list.html#v-for-with-a-Range
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - v-for with a Range</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- v-for with a Range -->
+<div id="example-1">
+  <span v-for="n in 10">{{ n }}</span>
+</div>
+
+<script>
+  // v-for with a Range
+  var vm = new Vue({
+    el: '#example-1'
+  })
+</script>
+</body>
+</html>
