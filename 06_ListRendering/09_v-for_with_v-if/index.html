@@ -1,0 +1,47 @@
+<!--
+https://jp.vuejs.org/v2/guide/list.html#v-for-と-v-if
+https://vuejs.org/v2/guide/list.html#v-for-with-v-if
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List Rendering - v-for with v-if</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- v-for with v-if -->
+<div id="example-1">
+  <ul>
+    <li v-for="todo in todos" v-if="!todo.isComplete">
+      {{ todo }}
+    </li>
+  </ul>
+
+  <ul v-if="todos.length">
+    <li v-for="todo in todos">
+      {{ todo }}
+    </li>
+  </ul>
+  <p v-else>No todos left!</p>
+</div>
+
+<script>
+  // v-for with v-if
+  var vm = new Vue({
+    el: '#example-1',
+    data: {
+      todos: [
+        {isComplete: false},
+        {isComplete: true}
+      ]
+    }
+  })
+
+  // clear all todos for test
+  if (Math.random() < 0.5) {
+    vm.todos.splice(0, vm.todos.length);
+  }
+</script>
+</body>
+</html>
