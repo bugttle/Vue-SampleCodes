@@ -1,0 +1,29 @@
+<!--
+https://jp.vuejs.org/v2/guide/events.html#イベントの購読
+https://vuejs.org/v2/guide/events.html#Listening-to-Events
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling - Listening to Events</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Listening to Events -->
+<div id="example-1">
+  <button v-on:click="counter += 1">Add 1</button>
+  <p>The button above has been clicked {{ counter }} times.</p>
+</div>
+
+<script>
+  // Listening to Events
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      counter: 0
+    }
+  })
+</script>
+</body>
+</html>
