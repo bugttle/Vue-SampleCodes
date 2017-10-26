@@ -1,0 +1,43 @@
+<!--
+https://jp.vuejs.org/v2/guide/events.html#メソッドイベントハンドラ
+https://vuejs.org/v2/guide/events.html#Method-Event-Handlers
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling - Method Event Handlers</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Method Event Handlers -->
+<div id="example-2">
+  <!-- `greet` is the name of a method defined below -->
+  <button v-on:click="greet">Greet</button>
+</div>
+
+<script>
+  // Method Event Handlers
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      name: 'Vue.js'
+    },
+    // define methods under the `methods` object
+    methods: {
+      greet: function (event) {
+        // `this` inside methods points to the Vue instance
+        alert('Hello ' + this.name + '!')
+        // `event` is the naive DOM event
+        if (event) {
+          alert(event.target.tagName)
+        }
+      }
+    }
+  })
+
+  // you can invoke methods in JavaScript too
+  example2.greet() // => 'Hello Vue.js!'
+</script>
+</body>
+</html>
