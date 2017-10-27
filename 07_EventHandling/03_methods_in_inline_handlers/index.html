@@ -1,0 +1,40 @@
+<!--
+https://jp.vuejs.org/v2/guide/events.html#インラインメソッドハンドラ
+https://vuejs.org/v2/guide/events.html#Methods-in-Inline-Handlers
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling - Methods in Inline Handlers</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Methods in Inline Handlers -->
+<div id="example-3">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
+
+  <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+    Submit
+  </button>
+</div>
+
+<script>
+  // Methods in Inline Handlers
+  var example3 = new Vue({
+    el: '#example-3',
+    methods: {
+      say: function (message) {
+        alert(message)
+      },
+      warn: function (message, event) {
+        // now we have access to the native event
+        if (event) event.preventDefault()
+        alert(message)
+      }
+    }
+  })
+</script>
+</body>
+</html>
