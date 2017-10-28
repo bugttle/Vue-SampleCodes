@@ -1,0 +1,43 @@
+<!--
+https://jp.vuejs.org/v2/guide/events.html#イベント修飾子
+https://vuejs.org/v2/guide/events.html#Event-Modifiers
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling - Event Modifiers</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Event Modifiers -->
+<div id="example-4">
+  <!-- the click event's propagation will be stopped -->
+  <a v-on:click.stop="doThis"></a>
+
+  <!-- the submit event will no longer reload the page -->
+  <form v-on:submit.prevent="onSubmit"></form>
+
+  <!-- modifiers can be chained -->
+  <form v-on:submit.prevent></form>
+
+  <!-- use capture mode when adding the event listener -->
+  <!-- i.e. an event targetting an inner element is handled here before being handled by the element -->
+  <div v-on:click.capture="doThis">...</div>
+
+  <!-- only trigger handler if event.target is the element itself -->
+  <!-- i.e. not from a child element -->
+  <div v-on:click.self="doThis">...</div>
+
+  <!-- the click event will be triggered at most once -->
+  <a v-on:click.once="doThis"></a>
+</div>
+
+<script>
+  // Event Modifiers
+  var example4 = new Vue({
+    el: '#example-4'
+  })
+</script>
+</body>
+</html>
