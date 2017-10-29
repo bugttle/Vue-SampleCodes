@@ -1,0 +1,53 @@
+<!--
+https://jp.vuejs.org/v2/guide/events.html#キー修飾子
+https://vuejs.org/v2/guide/events.html#Key-Modifiers
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling - Key Modifiers</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Key Modifiers -->
+<div id="example-5">
+  <!-- only call `vm.submit()` when the `keyCode` is 13 -->
+  <input v-on:keyup.13="submit">
+
+  <!-- same as above -->
+  <input v-on:keyup.enter="submit">
+
+  <!-- also works for shorthand -->
+  <input @keyup.enter="submit">
+
+  <!--
+    .enter
+    .tab
+    .delete (captures both "Delete" and "Backspace" keys)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right
+  -->
+
+  <!-- enabled `v-on:keyup.f1` -->
+  <input v-on:keyup.f1="doThis">
+
+  <!-- Automatic Key Modifers -->
+  <input @keyup.page-down="onPageDown">
+</div>
+
+<script>
+  // Key Modifiers
+  var example5 = new Vue({
+    el: '#example-5'
+  })
+
+  // enable `v-on:keyup.f1`
+  Vue.config.keyCodes.f1 = 112
+</script>
+</body>
+</html>
