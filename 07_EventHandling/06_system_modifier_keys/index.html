@@ -1,0 +1,59 @@
+<!--
+https://jp.vuejs.org/v2/guide/events.html#システム修飾子キー
+https://vuejs.org/v2/guide/events.html#System-Modifier-Keys
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling - System Modifier Keys</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Key Modifiers -->
+<div id="example-6">
+  <!--
+    .ctrl
+    .alt
+    .shift
+    .meta
+  -->
+
+  <!-- Alt + C -->
+  <input @keyup.alt.67="clear">
+
+  <!-- Ctrl + Click -->
+  <div @click.ctrl="doSomething">Do Something</div>
+
+  <!-- this will fire even if Alt or Shift is also pressed -->
+  <button @click.ctrl="onClick">A</button>
+
+  <!--
+    .exact
+  -->
+
+  <!-- this will only fire when only Ctrl is pressed -->
+  <button @click.ctrl.exact="onCtrlClick">A</button>
+
+  <!--
+    .left
+    .right
+    .middle
+  -->
+
+  <div @click.right="showMessage">Right click here</div>
+</div>
+
+<script>
+  // Key Modifiers
+  var example6 = new Vue({
+    el: '#example-6',
+    methods: {
+      showMessage: function () {
+        alert('Right click')
+      }
+    }
+  })
+</script>
+</body>
+</html>
