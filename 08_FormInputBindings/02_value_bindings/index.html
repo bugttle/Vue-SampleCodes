@@ -1,0 +1,76 @@
+<!--
+https://jp.vuejs.org/v2/guide/forms.html#値のバインディング
+https://vuejs.org/v2/guide/forms.html#Value-Bindings
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form Input Bindings - Value Bindings</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Checkbox -->
+<div id="example-1">
+  <input
+      type="checkbox"
+      v-model="toggle"
+      v-bind:true-value="a"
+      v-bind:false-value="b"
+  >
+</div>
+
+
+<!-- Radio -->
+<div id="example-2">
+  <input type="radio" v-model="pick" v-bind:value="a">
+</div>
+
+
+<!-- Select Options -->
+<div id="example-3">
+  <select v-model="selected">
+    <!-- inline object literal -->
+    <option v-bind:value="{ number: 123 }">123</option>
+  </select>
+</div>
+
+
+<script>
+  // Checkbox
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      toggle: '',
+      a: '',
+      b: ''
+    }
+  })
+
+
+  // Radio
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      pick: '',
+      a: ''
+    }
+  })
+
+
+  // Select Options
+  var example3 = new Vue({
+    el: '#example-3',
+    data: {
+      selected: {
+        number: ''
+      }
+    }
+  })
+
+  // when selected:
+  // console.log(typeof(example3.selected)) // => 'object'
+  // console.log(example3.selected.number) // => 123
+</script>
+</body>
+</html>
