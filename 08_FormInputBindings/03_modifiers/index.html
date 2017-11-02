@@ -1,0 +1,60 @@
+<!--
+https://jp.vuejs.org/v2/guide/forms.html#修飾子
+https://vuejs.org/v2/guide/forms.html#Modifiers
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form Input Bindings - Modifiers</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- .lazy -->
+<div id="example-1">
+  <!-- synced after "change" instead of "input" -->
+  <input v-model.lazy="msg">
+</div>
+
+
+<!-- .number -->
+<div id="example-2">
+  <input v-model.number="age" type="number">
+</div>
+
+
+<!-- .trim -->
+<div id="example-3">
+  <input v-model.trim="msg">
+</div>
+
+
+<script>
+  // .lazy
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      msg: ''
+    }
+  })
+
+
+  // .number
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      'age': 0
+    }
+  })
+
+
+  // .trim
+  var example3 = new Vue({
+    el: '#example-3',
+    data: {
+      msg: ''
+    }
+  })
+</script>
+</body>
+</html>
