@@ -1,0 +1,112 @@
+<!--
+https://jp.vuejs.org/v2/guide/components.html#コンポーネントの使用
+https://vuejs.org/v2/guide/components.html#Using-Components
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Components - Using Components</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Global Registration -->
+<div id="example-1">
+  <my-component></my-component>
+</div>
+
+
+<!-- Local Registration -->
+<div id="example-2">
+  <my-component></my-component>
+</div>
+
+
+<!-- DOM Template Parsing Caveats -->
+<div id="example-3">
+  <table>
+    <!-- [Vue warn]: Invalid Component definition: <tr>my-row</tr> -->
+    <my-row></my-row>
+  </table>
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+</div>
+
+
+<!-- data Must Be a Function -->
+<div id="example-4">
+  <div>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+  </div>
+
+  <div>
+    <simple-counter-fixed></simple-counter-fixed>
+    <simple-counter-fixed></simple-counter-fixed>
+    <simple-counter-fixed></simple-counter-fixed>
+  </div>
+</div>
+
+<script>
+  // Global Registration
+  Vue.component('my-component', {
+    template: '<div>A custom component!</div>'
+  })
+  var example1 = new Vue({
+    el: '#example-1'
+  })
+
+
+  // Local Registration
+  var Child = {
+    template: '<div>A custom component!</div>'
+  }
+
+  var example2 = new Vue({
+    el: '#example-2',
+    components: {
+      // <my-component> will only be available in parent's template
+      'my-component': Child
+    }
+  })
+
+
+  // DOM Template Parsing Caveats
+  var example3 = new Vue({
+    el: '#example-3',
+    components: {
+      'my-row': '<tr>my-row</tr>'
+    }
+  })
+
+
+  // data Must Be a Function
+  var data = {counter: 0}
+
+  Vue.component('simple-counter', {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    // data is technically a function, so Vue won't
+    // complain, but we return the same object
+    // reference for each component instance
+    data: function () {
+      return data
+    }
+  })
+
+  Vue.component('simple-counter-fixed', {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    data: function () {
+      return {
+        counter: 0
+      }
+    }
+  })
+
+  var example4 = new Vue({
+    el: '#example-4'
+  })
+</script>
+</body>
+</html>
