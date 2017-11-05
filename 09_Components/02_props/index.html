@@ -42,6 +42,13 @@ https://vuejs.org/v2/guide/components.html#Props
 </div>
 
 
+<!-- One-Way Data Flow -->
+<div id="example-5">
+  <comp1 :initial-counter="1"></comp1>
+  <comp2 size=" 100 "></comp2>
+</div>
+
+
 <script>
   // Passing Data with Props
   var example1 = new Vue({
@@ -101,6 +108,30 @@ https://vuejs.org/v2/guide/components.html#Props
       comp: {
         props: ['someProp'],
         template: '<span>{{ someProp }} : {{ typeof(someProp) }}</span>'
+      }
+    }
+  })
+
+
+  // One-Way Data Flow
+  var example5 = new Vue({
+    el: '#example-5',
+    components: {
+      comp1: {
+        props: ['initialCounter'],
+        data: function () {
+          return {counter: this.initialCounter}
+        },
+        template: '<span>{{ initialCounter }}</span>'
+      },
+      comp2: {
+        props: ['size'],
+        computed: {
+          normalizedSize: function () {
+            return this.size.trim().toLowerCase()
+          }
+        },
+        template: '<span>&quot;{{ normalizedSize }}&quot;</span>'
       }
     }
   })
