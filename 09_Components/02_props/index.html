@@ -49,6 +49,17 @@ https://vuejs.org/v2/guide/components.html#Props
 </div>
 
 
+<!-- Prop Validation -->
+<div id="example-6">
+  <example
+      :prop-a="123"
+      prop-b="propB"
+      prop-c="propC"
+      prop-f="11"
+  ></example>
+</div>
+
+
 <script>
   // Passing Data with Props
   var example1 = new Vue({
@@ -135,6 +146,57 @@ https://vuejs.org/v2/guide/components.html#Props
       }
     }
   })
+
+
+  // Prop Validation
+  var example6 = new Vue({
+    el: '#example-6',
+    components: {
+      example: {
+        props: {
+          // basic type check (`null` means accept any type)
+          propA: Number, // [Vue warn]: Invalid prop: type check failed for prop "propA". Expected Number, got String.
+          // multiple possible types
+          propB: [String, Number],
+          // a required string
+          propC: {
+            type: String,
+            required: true // [Vue warn]: Missing required prop: "propC"
+          },
+          // a number with default value
+          propD: {
+            type: Number,
+            default: 100
+          },
+          // object/array defaults should be returned from a
+          // factory function
+          propE: {
+            type: Object,
+            default: function () {
+              return {message: 'hello'}
+            }
+          },
+          // custom validator function
+          propF: {
+            validator: function (value) {
+              return value > 10
+            }
+          }
+        },
+        template: '<span>propA: {{ propA }} / propB: {{ propB }} / propC: {{ propC }} / propD: {{ propD }} / propE: {{ propE }} / propF: {{ propF }}</span>'
+      }
+    }
+  })
+  /*
+   The type can be one of the following native constructors:
+   - String
+   - Number
+   - Boolean
+   - Function
+   - Object
+   - Array
+   - Symbol
+   */
 </script>
 </body>
 </html>
