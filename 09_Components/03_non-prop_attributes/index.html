@@ -1,0 +1,32 @@
+<!--
+https://jp.vuejs.org/v2/guide/components.html#プロパティではない属性
+https://vuejs.org/v2/guide/components.html#Non-Prop-Attributes
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Components - Non-Prop Attributes</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Non-Prop Attributes -->
+<div id="example-1">
+  <bs-date-input data-3d-date-picker="true"></bs-date-input>
+</div>
+
+
+<script>
+  // Non-Prop Attributes
+  var example1 = new Vue({
+    el: '#example-1',
+    components: {
+      bsDateInput: {
+        template: '<span id="example-1-child"><!- `data-3d-date-picker=&quot;true&quot; attribute will automatically be added to this tag. --></span>'
+      }
+    }
+  })
+  console.log('data-3d-date-picker: ' + document.getElementById('example-1-child').getAttribute('data-3d-date-picker'))
+</script>
+</body>
+</html>
