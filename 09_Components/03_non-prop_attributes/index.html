@@ -16,6 +16,14 @@ https://vuejs.org/v2/guide/components.html#Non-Prop-Attributes
 </div>
 
 
+<!-- Replacing/Merging with Existing Attributes -->
+<div id="example-2">
+  <bs-date-input
+      data-3d-date-picker="true"
+      class="date-picker-theme-dark"
+  ></bs-date-input>
+</div>
+
 <script>
   // Non-Prop Attributes
   var example1 = new Vue({
@@ -27,6 +35,18 @@ https://vuejs.org/v2/guide/components.html#Non-Prop-Attributes
     }
   })
   console.log('data-3d-date-picker: ' + document.getElementById('example-1-child').getAttribute('data-3d-date-picker'))
+
+
+  // Replacing/Merging with Existing Attributes
+  var example2 = new Vue({
+    el: '#example-2',
+    components: {
+      bsDateInput: {
+        template: '<input id="example-2-child" type="date" class="form-control"></input>'
+      }
+    }
+  })
+  console.log('class: ' + document.getElementById('example-2-child').getAttribute('class'))
 </script>
 </body>
 </html>
