@@ -1,0 +1,52 @@
+<!--
+https://jp.vuejs.org/v2/guide/components.html#カスタムイベント
+https://vuejs.org/v2/guide/components.html#Custom-Events
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Components - Custom Events</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Using v-on with Custom Events -->
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+
+<hr>
+
+<script>
+  // Using v-on with Custom Events
+  Vue.component('button-counter', {
+    template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+    data: function () {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      incrementCounter: function () {
+        this.counter += 1
+        this.$emit('increment')
+      }
+    }
+  })
+
+  var counterEventExample = new Vue({
+    el: '#counter-event-example',
+    data: {
+      total: 0
+    },
+    methods: {
+      incrementTotal: function () {
+        this.total += 1
+      }
+    }
+  })
+</script>
+</body>
+</html>
