@@ -19,6 +19,13 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
 
 <hr>
 
+<!-- Binding Native Events to Components -->
+<div id="native-event-example">
+  <my-component v-on:click.native="doTheThing"></my-component>
+</div>
+
+<hr>
+
 <script>
   // Using v-on with Custom Events
   Vue.component('button-counter', {
@@ -47,6 +54,22 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
       }
     }
   })
+
+
+  // Binding Native Events to Components
+  Vue.component('my-component', {
+    template: '<button>Native Event</button>'
+  })
+
+  var nativeEventExample = new Vue({
+    el: '#native-event-example',
+    methods: {
+      doTheThing: function (event) {
+        console.log(event)
+      }
+    }
+  })
+
 </script>
 </body>
 </html>
