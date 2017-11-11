@@ -26,6 +26,14 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
 
 <hr>
 
+<!-- `.sync` Modifier -->
+<div id="sync-modifier-example">
+  <comp :foo.sync="bar"></comp>
+  <comp :foo="bar" @update:foo="val => bar = val"></comp>
+</div>
+
+<hr>
+
 <script>
   // Using v-on with Custom Events
   Vue.component('button-counter', {
@@ -67,6 +75,26 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
       doTheThing: function (event) {
         console.log(event)
       }
+    }
+  })
+
+
+  // `.sync` Modifier
+  Vue.component('comp', {
+    props: ['foo'],
+    template: '<button v-on:click="syncValue">{{ foo }}</button>',
+    methods: {
+      syncValue: function () {
+        var newValue = this.foo + 1
+        this.$emit('update:foo', newValue)
+      }
+    }
+  })
+
+  var syncModifierExample = new Vue({
+    el: '#sync-modifier-example',
+    data: {
+      bar: 0
     }
   })
 
