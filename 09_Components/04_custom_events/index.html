@@ -34,6 +34,24 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
 
 <hr>
 
+<!-- Form Input Components using Custom Events -->
+<div id="currency-input-example">
+  <currency-input v-model="price"></currency-input>
+</div>
+
+<script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/974aa47f8f9c5361c5233bd56be37db8ed765a09/currency-validator.js"></script>
+<div id="currency-input-new-example">
+  <currency-input-new label="Price" v-model="price"></currency-input-new>
+  <currency-input-new label="Shipping" v-model="shipping"></currency-input-new>
+  <currency-input-new label="Handling" v-model="handling"></currency-input-new>
+  <currency-input-new label="Discount" v-model="discount"></currency-input-new>
+
+  <p>Total: ${{ total }}</p>
+</div>
+
+<hr>
+
+
 <script>
   // Using v-on with Custom Events
   Vue.component('button-counter', {
@@ -98,6 +116,103 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
     }
   })
 
+
+  // Form Input Components using Custom Events
+  Vue.component('currency-input', {
+    template: '\
+      <span>\
+        $\
+        <input\
+          ref="input"\
+          v-bind:value="value"\
+          v-on:input="updateValue($event.target.value)">\
+      </span>\
+    ',
+    props: ['value'],
+    methods: {
+      updateValue: function (value) {
+        var formattedValue = value
+          .trim()
+          .slice(0, value.indexOf('.') === -1 ? value.length : value.indexOf('.') + 3)
+        if (formattedValue !== value) {
+          this.$refs.input.value = formattedValue
+        }
+        this.$emit('input', Number(formattedValue))
+      }
+    }
+  })
+
+  var currencyInputExample = new Vue({
+    el: '#currency-input-example',
+    data: { price: '' }
+  })
+
+
+  Vue.component('currency-input-new', {
+    template: '\
+      <div>\
+        <label v-if="label">{{ label }}</label>\
+        $\
+        <input\
+          ref="input"\
+          v-bind:value="value"\
+          v-on:input="updateValue($event.target.value)"\
+          v-on:focus="selectAll"\
+          v-on:blur="formatValue"\
+        >\
+      </div>\
+    ',
+    props: {
+      value: {
+        type: Number,
+        default: 0
+      },
+      label: {
+        type: String,
+        default: ''
+      }
+    },
+    mounted: function () {
+      this.formatValue()
+    },
+    methods: {
+      updateValue: function (value) {
+        var result = currencyValidator.parse(value, this.value)
+        if (result.warning) {
+          this.$refs.input.value = result.value
+        }
+        this.$emit('input', result.value)
+      },
+      formatValue: function () {
+        this.$refs.input.value = currencyValidator.format(this.value)
+      },
+      selectAll: function (event) {
+        setTimeout(function () {
+          event.target.select()
+        }, 0)
+      }
+    }
+  })
+
+  var currencyInputNewExample = new Vue({
+    el: '#currency-input-new-example',
+    data: {
+      price: 0,
+      shipping: 0,
+      handling: 0,
+      discount: 0
+    },
+    computed: {
+      total: function () {
+        return ((
+          this.price * 100 +
+          this.shipping * 100 +
+          this.handling * 100 -
+          this.discount * 100
+        ) / 100).toFixed(2)
+      }
+    }
+  })
 </script>
 </body>
 </html>
