@@ -51,6 +51,16 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
 
 <hr>
 
+<!-- Customizing Component `v-model` -->
+<div id="my-checkbox-example">
+  <my-checkbox v-model="foo1" value="some value 1"></my-checkbox>
+  <my-checkbox
+          :checked="foo2"
+          @change="val => { foo2 = val }"
+          value="some value 2">
+  </my-checkbox>
+</div>
+
 
 <script>
   // Using v-on with Custom Events
@@ -211,6 +221,42 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
           this.discount * 100
         ) / 100).toFixed(2)
       }
+    }
+  })
+
+
+  // Customizing Component `v-model`
+  Vue.component('my-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      checked: Boolean,
+      // this allows using the `value` prop for a different purpose
+      value: String
+    },
+    template: '\
+      <span>\
+        <input\
+          type="checkbox"\
+          v-bind:checked="checked"\
+          v-on:change="toggleStatus($event.target.checked)"\
+        > {{ checked }} : {{ value }}\
+      </span>\
+    ',
+    methods: {
+      toggleStatus: function (checked) {
+        this.$emit('change', checked)
+      }
+    }
+  })
+
+  var myCheckboxExample = new Vue({
+    el: '#my-checkbox-example',
+    data: {
+      foo1: false,
+      foo2: false
     }
   })
 </script>
