@@ -62,6 +62,14 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
 </div>
 
 
+<hr>
+
+<!-- Non Parent-Child Communication -->
+<div id="non-parent-child-communication-example">
+  <communication-comp-a></communication-comp-a>
+  <communication-comp-b></communication-comp-b>
+</div>
+
 <script>
   // Using v-on with Custom Events
   Vue.component('button-counter', {
@@ -258,6 +266,37 @@ https://vuejs.org/v2/guide/components.html#Custom-Events
       foo1: false,
       foo2: false
     }
+  })
+
+
+  // Non Parent-Child Communication
+  var bus = new Vue()
+  Vue.component('communication-comp-a', {
+    template: '<button v-on:click="selectId">Select ID</button>',
+    methods: {
+      selectId: function () {
+        bus.$emit('id-selected', 1)
+      }
+    }
+  })
+
+  Vue.component('communication-comp-b', {
+    template: '<span> {{ sum }}</span>',
+    data: function () {
+      return {
+        sum: 1
+      }
+    },
+    created: function () {
+      var self = this;
+      bus.$on('id-selected', function (id) {
+        self.sum += id
+      })
+    }
+  })
+
+  var nonParentChildCommunicationExample = new Vue({
+    el: '#non-parent-child-communication-example'
   })
 </script>
 </body>
