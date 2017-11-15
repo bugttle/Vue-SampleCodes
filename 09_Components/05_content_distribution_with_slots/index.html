@@ -1,0 +1,44 @@
+<!--
+https://jp.vuejs.org/v2/guide/components.html#スロットによるコンテンツ配信
+https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Components - Content Distribution with Slots</title>
+  <script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!-- Compilation Scope -->
+<div id="example-1">
+  <child-component>
+    {{ message }}
+  </child-component>
+  <!-- does NOT work -->
+  <!-- <child-component v-show="someChildProperty"></child-component> -->
+</div>
+
+<hr>
+
+<script>
+  // Global Registration
+  Vue.component('child-component', {
+    // this dows work, because we are in the right scope
+    template: '<div v-show="someChildProperty">Child</div>',
+    data: function () {
+      return {
+        someChildProperty: true
+      }
+    }
+  })
+
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      message: 'Parent Message'
+    }
+  })
+</script>
+</body>
+</html>
