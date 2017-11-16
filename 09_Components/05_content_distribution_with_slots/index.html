@@ -21,6 +21,18 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
 
 <hr>
 
+<!-- Single Slot -->
+<div id="example-2">
+  <h1>I'm the parent title</h1>
+  <my-component>
+    <p>This is some original content</p>
+    <p>This is some more original content</p>
+  </my-component>
+  <my-component><!-- It will show contents of `slot` --></my-component>
+</div>
+
+<hr>
+
 <script>
   // Global Registration
   Vue.component('child-component', {
@@ -38,6 +50,24 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
     data: {
       message: 'Parent Message'
     }
+  })
+
+
+  // Single Slot
+  Vue.component('my-component', {
+    template: "\
+      <div>\
+        <h2>I'm the child title</h2>\
+        <slot>\
+          This will only be displayed if there is no content\
+          to be distributed.\
+        </slot>\
+      </div>\
+    "
+  })
+
+  var example2 = new Vue({
+    el: '#example-2'
   })
 </script>
 </body>
