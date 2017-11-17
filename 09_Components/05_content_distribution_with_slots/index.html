@@ -33,6 +33,20 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
 
 <hr>
 
+<!-- Named Slots -->
+<div id="example-3">
+  <app-layout>
+    <h1 slot="header">Here might be a page title</h1>
+
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
+
+    <p slot="footer">Here's some contact info</p>
+  </app-layout>
+</div>
+
+<hr>
+
 <script>
   // Global Registration
   Vue.component('child-component', {
@@ -68,6 +82,28 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
 
   var example2 = new Vue({
     el: '#example-2'
+  })
+
+
+  // Named Slots
+  Vue.component('app-layout', {
+    template: '\
+      <div id="example-3" class="container">\
+        <header>\
+          <slot name="header"></slot>\
+        </header>\
+        <main>\
+          <slot></slot>\
+        </main>\
+        <footer>\
+          <slot name="footer"></slot>\
+        </footer>\
+      </div>\
+    '
+  })
+
+  var example3 = new Vue({
+    el: '#example-3'
   })
 </script>
 </body>
