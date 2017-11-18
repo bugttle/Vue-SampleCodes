@@ -47,6 +47,18 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
 
 <hr>
 
+<!-- Scoped Slots -->
+<div id="example-4" class="parent">
+  <child>
+    <template slot-scope="props">
+      <span>hello from parent</span>
+      <span>{{ props.text }}</span>
+    </template>
+  </child>
+</div>
+
+<hr>
+
 <script>
   // Global Registration
   Vue.component('child-component', {
@@ -105,6 +117,21 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
   var example3 = new Vue({
     el: '#example-3'
   })
+
+
+  // Scoped Slots
+  Vue.component('child', {
+    template: '\
+      <div class="child">\
+        <slot text="hello from child"></slot>\
+      </div>\
+    '
+  })
+
+  var example4 = new Vue({
+    el: '#example-4'
+  })
+
 </script>
 </body>
 </html>
