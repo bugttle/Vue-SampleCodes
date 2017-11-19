@@ -55,6 +55,16 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
       <span>{{ props.text }}</span>
     </template>
   </child>
+
+  <my-awesome-list :items="items">
+    <!-- scoped slot can be named too -->
+    <li
+            slot="item"
+            slot-scope="props"
+            class="my-fancy-item">
+      {{ props.text }}
+    </li>
+  </my-awesome-list>
 </div>
 
 <hr>
@@ -128,10 +138,29 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
     '
   })
 
-  var example4 = new Vue({
-    el: '#example-4'
+  Vue.component('my-awesome-list', {
+    template: '\
+      <ul>\
+        <slot name="item"\
+          v-for="item in items"\
+          :text="item.text">\
+          <!-- fallback content here -->\
+        </slot>\
+      </ul>\
+    ',
+    props: ["items"]
   })
 
+  var example4 = new Vue({
+    el: '#example-4',
+    data: {
+      items: [
+        { text: 'text1' },
+        { text: 'text2' },
+        { text: 'text3' },
+      ]
+    }
+  })
 </script>
 </body>
 </html>
