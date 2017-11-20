@@ -65,6 +65,10 @@ https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
       {{ props.text }}
     </li>
   </my-awesome-list>
+
+  <child>
+    <span slot-scope="{ text }">{{ text }}</span>
+  </child>
 </div>
 
 <hr>
